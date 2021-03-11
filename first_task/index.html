@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table></table>
+
+    <script>
+        class GenerateTable {
+            constructor(width, height, domElement) {
+                this.width = width
+                this.height = height
+                this.domElement = domElement
+            }
+
+            table() {
+                const table = document.createElement('table')
+                for(let i = 0; i < this.width; i++) {
+                    const row = document.createElement('tr')
+                    for(let j = 0; j < this.height; j++) {
+                        const cell = document.createElement("td")
+                        const cellText = document.createTextNode(`${i * 10 + j + 1}`)
+                        cell.appendChild(cellText)
+                        row.appendChild(cell)
+                    }
+                    table.appendChild(row)
+                }
+                this.domElement.appendChild(table)
+                table.addEventListener('click', e => console.log(e.target.textContent))
+            }
+        }
+
+        const tb = new GenerateTable(10, 10, document.querySelector('table'))
+        tb.table()
+    </script>
+</body>
+</html>
